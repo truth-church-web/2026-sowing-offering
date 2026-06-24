@@ -23,9 +23,10 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             box-sizing: border-box;
+            margin-bottom: 20px;
         }
         .header {
-            background-color: #4a7c59; /* 溫和的草綠色，象徵撒種與生命力 */
+            background-color: #4a7c59; /* 溫和的草綠色 */
             color: white;
             text-align: center;
             padding: 30px 20px;
@@ -53,7 +54,7 @@
             color: #333333;
             font-size: 15px;
         }
-        input[type="text"], input[type="number"] {
+        input[type="text"], input[type="number"], select {
             width: 100%;
             padding: 12px;
             border: 1px solid #cccccc;
@@ -61,8 +62,9 @@
             font-size: 16px;
             box-sizing: border-box;
             transition: border-color 0.3s;
+            background-color: #fff;
         }
-        input:focus {
+        input:focus, select:focus {
             border-color: #4a7c59;
             outline: none;
         }
@@ -98,14 +100,6 @@
         button:hover {
             background-color: #386143;
         }
-        .footer {
-            text-align: center;
-            padding: 15px;
-            font-size: 12px;
-            color: #888888;
-            background-color: #fafafa;
-            border-top: 1px solid #eeeeee;
-        }
     </style>
 </head>
 <body>
@@ -130,7 +124,18 @@
 
                 <div class="form-group">
                     <label for="pastor">區牧</label>
-                    <input type="text" id="pastor" placeholder="請輸入您的區牧姓名" required>
+                    <select id="pastor" required>
+                        <option value="" disabled selected>-- 請選擇您的區牧 --</option>
+                        <option value="玲霈">玲霈</option>
+                        <option value="育淇">育淇</option>
+                        <option value="維平">維平</option>
+                        <option value="杏梅">杏梅</option>
+                        <option value="盈欣">盈欣</option>
+                        <option value="章魁">章魁</option>
+                        <option value="淑蘋">淑蘋</option>
+                        <option value="綺苓">綺苓</option>
+                        <option value="陳澤">陳澤</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
@@ -142,10 +147,6 @@
 
                 <button type="submit" id="submitBtn">確認送出</button>
             </form>
-        </div>
-
-        <div class="footer">
-            凡甘心樂意的，必蒙神悅納。
         </div>
     </div>
 
@@ -171,7 +172,7 @@
             // 傳送資料到 Google Sheets
             fetch(url, {
                 method: 'POST',
-                mode: 'no-cors', // 處理跨網域問題
+                mode: 'no-cors',
                 cache: 'no-cache',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
